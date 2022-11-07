@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mrs+Sheppards&family=Poppins:wght@300;800&display=swap" rel="stylesheet">
+
+
+    
+    </head>
+<body>
+    <header>
+        <h1><span>Hello</span> Chat!</h1>
+        <p>Just stay connected with your dev team!</p>
+        <div>
+            <form action="" id="searchForm">
+                <input type="text" id="searchInput" placeholder="Search phrase">
+                <button id="searching">Search</button>
+                <button id="reset">Reset</button><br><br><br>
+            </form>
+        </div>
+    </header>
+
+    <div class="chat">
+        <div class="chatInputsWrapper">
+            <form action="" id="chatForm">
+                <div class="chatinput">
+                    <label for="name">Author</label>
+                    <input type="text" id="nameInput" name="name" placeholder="Type your name..."><br>
+                </div>
+                <div class="chatinput">
+                    <label for="message">Message</label>
+                    <textarea id="messageInput" name="message" placeholder="Start typing..."></textarea><br>
+                    <button class="sub" type="submit">Send</button>
+                </div>
+                
+
+            </form>
+        </div>
+
+        <div class="messagesWrapper">
+            <ul id="messagesList">
+                <li>
+
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="js/chat.js" type="module"></script>
+</body>
+</html>
