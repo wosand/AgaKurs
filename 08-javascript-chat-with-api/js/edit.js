@@ -5,6 +5,10 @@
 //     window.location.href = 'index.html'
 // }
 
+// const renderDataToHTML = 
+
+
+
 // const fetchMessageWithId = () => {
 //     fetch(`'http://localhost:5000/chatmessages/${id}'`)
 //     .then(res => res.json())
@@ -12,3 +16,5 @@
 //         renderDataToHTML(data);
 //     })
 // }
+
+//fetchMessageWithId();

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "server.js",
   "type": "module",
-  "source": "index.html",
+  "source": ["index.html", "add.html", "edit.html"],
   "scripts": {
     "server": "nodemon server.js",
     "dev": "parcel",

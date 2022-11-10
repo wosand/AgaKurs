@@ -80,7 +80,8 @@ const removeMessage = id => {
 
 
 const handleListClick = (event) => {
-    // żeby dowiedzieć się, który element został kliknięty, musimy użyć event.target
+    // żeby dowiedzieć się, który element został kliknięty, musimy użyć event.target.
+    // wskazuje ok nonkretnie kliknięty element
     if(event.target.classList.contains('close')) {
         // console.log('element, który został kliknięty', event.target);
 

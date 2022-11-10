@@ -31,8 +31,8 @@ const handleSubmit = (event) => {
 // nowy obiekt todosa
     const newTodo = {
         id: uuidv4(),
-        title: inputTitle.value,
-        author: inputAuthor.value
+        author: inputAuthor.value,
+        title: inputTitle.value
     } 
 postTodo(newTodo);
 }

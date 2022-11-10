@@ -29,8 +29,10 @@ const renderTodos = (todos) => {
     todos.forEach(todo => {
         todoList.innerHTML += `
         <li>
+            <p>${todo.author}</p>
             <p>${todo.title}</p>
-            <p>${todo.author}</p>    
+            <button class="edit" data-elementId="${todo.id}"> &#9998; </button>                 
+            <button class="close" data-elementId="${todo.id}"> x </button>                
         </li>
         `;
     })
@@ -62,5 +64,53 @@ const fetchTodos = () => {
     })
 }
 
+
+// DELETING Todo
+
+// wskazujemy po atrybucie id co chcemy usunąć i(id usuwanego elementu przekazujemy)
+
+const removeTodo = id => { // operacja na id konkretnego todosa
+    fetch(`http://localhost:5000/todos/${id}`, {
+        method: 'DELETE'
+    })
+    .then(() => {
+        console.log('Udało się!');
+    })
+}
+
+const handleTodoRemove = (event) => {
+    // tworzymy zmienną z id do usunięcia - w tym przypadku id jest atrybutem targetu zdarzenia
+    // dlatego potrzebujemy pobrać ten atrybut - czyli id
+    const idToRemove = event.target.getAttribute('data-elementId') // ta atrybut, który dopisaliśmy do HTML
+    removeTodo(idToRemove);
+    event.target.parentElement.remove();
+}
+
+
+// EDITING Todo
+
+const handleTodoEdit = (event) => {
+    const idToEdit = event.target.getAttribute('data-elementId')
+     // potrzebuje przekazac id edytowanego elementu do podstrony edit, zeby podstrona edit wiedziala jaki element na stronie chcemy edytowac. Robię to zapisując tu w LS i odczytując z LS na stronie edit
+    localStorage.setItem('elementToEditId', idToEdit)
+    window.location.href = 'edit.html';
+
+}
+
+const handleListClick = (event) => {
+    // jeśli target tego zdarzenia, jego clasa zawiera 'close'
+    if(event.target.classList.contains('close')) {
+    // to wykonaj funkcję handleTodoRemove, która jest zdarzeniem
+        handleTodoRemove(event);
+    if(event.target.classList.contains('edit')) {
+        handleTodoEdit(event);
+    }
+    console.log(event.target)
+}}
+
 // wywołaj metodę zapytania
+
+// Musimy nasłuchiwać całą listę, bo rzeczy, które chcemy by były klikalne jeszcze nie istnieją
+// (bo przycisk dodaje się skryptem)
+todoList.addEventListener('click', handleListClick)
 fetchTodos();

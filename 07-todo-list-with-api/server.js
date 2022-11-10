@@ -1,8 +1,10 @@
 import express from 'express';
-import { addTodo, fetchTodos } from './controllers/todos.js';
+
 import bodyParser from 'body-parser';
 import cors from 'cors';
 
+import { addTodo, fetchTodos, fetchTodo, deleteTodo, editTodo } 
+from './controllers/todos.js';
 // Własny serwer BE
 const app = express();
 
@@ -26,9 +28,9 @@ app.use(cors({ //jest to blokada po stronie przeglądarki
 
 
 // ENDPOINT - Pojedynczy punkt wejściowy do aplikacji
-app.get('/', (req, res) => {
-  res.status(200).send('Hello world')
-})
+// app.get('/', (req, res) => {
+//   res.status(200).send('Hello world')
+// })
 
 // ENDPOINT GET - Pojedynczy punkt wejściowy do aplikacji
 app.get('/todos', (req, res) => {
@@ -37,11 +39,20 @@ app.get('/todos', (req, res) => {
         res.status(200).send(data)
       })
   })
+
+  app.get('/todos/:id',(req, res) => {
+    fetchTodo(req.params.id)
+      .then(data => {
+        res.status(200).send(data)
+      })
+  })
+
 //   Controller to zbiór funkcji dotyczący danego zasobu endpointu.
 // Trzymamy w nim funkcje. Musimy zaimportować konkretną funkcję z controllera todos
 
 // ENDPOINT POST
 app.post('/todos', (req, res) => {
+  
     // req.body to jest zawartość bbody, który przyjdzie z zapytania POST
 
 // *TUTAJ JEST MIEJSCE NA WALIDACJĘ
@@ -54,6 +65,23 @@ if(!req.body.id) {
         res.status(200).send('OK!')
       })
   })
+
+
+app.delete('/todos/:id', (req, res) => {
+  deleteTodo(req.params.id)
+  .then(() => {
+    res.status(200).send('OK!');
+  })
+}) 
+
+app.put('/todos/:id', (req, res) => {
+  editTodo(req.params.id, req.body)
+    .then(() => {
+      res.status(200).send('OK!');
+    })
+
+})
+
 
 // adres naszego API, tu - nasz server postawiony na porcie 5000
 app.listen(5000, () => {
