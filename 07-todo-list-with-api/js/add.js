@@ -1,4 +1,4 @@
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'https://jspm.dev/uuid';
 
 const addTodo = document.querySelector('#addTodo');
 const inputTitle = document.querySelector('#inputTitle');
@@ -26,14 +26,15 @@ const postTodo = (todo) => {
 
 //funkcja dodawania nowego todosa po wciśnięciu submita
 const handleSubmit = (event) => {
-    event.preventDefault();
+  event.preventDefault();
 
-// nowy obiekt todosa
-    const newTodo = {
-        id: uuidv4(),
-        author: inputAuthor.value,
-        title: inputTitle.value
-    } 
-postTodo(newTodo);
+  // nowy obiekt todosa
+  const newTodo = {
+      id: uuidv4(),
+      author: inputAuthor.value,
+      title: inputTitle.value
+  } 
+  postTodo(newTodo);
 }
+
 addTodo.addEventListener('submit', handleSubmit)

@@ -24,7 +24,7 @@ let todos =[];
 
 // wyświetlanie listy
 const renderTodos = (todos) => {
-    todoList.innerHTML += '';
+    todoList.innerHTML = '';
 
     todos.forEach(todo => {
         todoList.innerHTML += `
@@ -102,11 +102,12 @@ const handleListClick = (event) => {
     if(event.target.classList.contains('close')) {
     // to wykonaj funkcję handleTodoRemove, która jest zdarzeniem
         handleTodoRemove(event);
+    }
     if(event.target.classList.contains('edit')) {
         handleTodoEdit(event);
     }
     console.log(event.target)
-}}
+}
 
 // wywołaj metodę zapytania
 

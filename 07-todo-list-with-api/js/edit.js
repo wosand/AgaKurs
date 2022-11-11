@@ -1,5 +1,5 @@
 
-const editTodoForm = document.querySelector('#editTodo');
+const editTodoForm = document.querySelector('#editTodoForm');
 const inputTitle = document.querySelector('#inputTitle');
 const inputAuthor = document.querySelector('#inputAuthor');
 
@@ -44,7 +44,7 @@ const handleEdit = (event) => {
     event.preventDefault();
 
     const todoToEdit = {
-        author: authorInput.value,
+        author: inputAuthor.value,
         title: inputTitle.value
     }
     editTodo(todoToEdit)

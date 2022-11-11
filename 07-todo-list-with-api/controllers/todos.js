@@ -19,7 +19,7 @@ export const fetchTodo = (id) => {
   return fetchTodos()
     .then(data => {
       const parsedJSON = JSON.parse(data);
-      const foundTodo = parsedJSON.messages.find(message => message.id === id);
+      const foundTodo = parsedJSON.todos.find(message => message.id === id);
 
       return foundTodo;
     })
@@ -27,14 +27,14 @@ export const fetchTodo = (id) => {
 
 // todo jest to cały obiekt, który idzie z FrontEndu
 export const addTodo = (todo) => {
-    return fsp.readFile('data/todos.json', 'utf8')
-      .then(data => {
-        const parsedJSON = JSON.parse(data);
-        // Potrzebuje do odczytanego JSON dodac nowy obiekt a nastepnie go zapisac
-        parsedJSON.todos.push(todo);
-  
-        return fsp.writeFile('data/todos.json', JSON.stringify(parsedJSON), 'utf8'); //zapis
-      })
+  return fetchTodos()
+  .then(data => {
+    const parsedJSON = JSON.parse(data);
+    // Potrzebuje do odczytanego JSON dodac nowy obiekt a nastepnie go zapisac
+    parsedJSON.todos.push(todo);
+
+    return fsp.writeFile('data/todos.json', JSON.stringify(parsedJSON), 'utf8'); //zapis
+  })
 }
 
 export const deleteTodo = (idToDelete) => {

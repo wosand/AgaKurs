@@ -34,34 +34,34 @@ app.use(cors({ //jest to blokada po stronie przeglądarki
 
 // ENDPOINT GET - Pojedynczy punkt wejściowy do aplikacji
 app.get('/todos', (req, res) => {
-    fetchTodos()
+  fetchTodos()
       .then(data => {
         res.status(200).send(data)
       })
   })
 
-  app.get('/todos/:id',(req, res) => {
-    fetchTodo(req.params.id)
-      .then(data => {
-        res.status(200).send(data)
-      })
-  })
+app.get('/todos/:id',(req, res) => {
+  fetchTodo(req.params.id)
+    .then(data => {
+      res.status(200).send(data)
+    })
+})
 
 //   Controller to zbiór funkcji dotyczący danego zasobu endpointu.
 // Trzymamy w nim funkcje. Musimy zaimportować konkretną funkcję z controllera todos
 
 // ENDPOINT POST
 app.post('/todos', (req, res) => {
-  
     // req.body to jest zawartość bbody, który przyjdzie z zapytania POST
 
-// *TUTAJ JEST MIEJSCE NA WALIDACJĘ
-if(!req.body.id) {
-    res.status(400).send('Lack of id in the sent request')
-}
+  // *TUTAJ JEST MIEJSCE NA WALIDACJĘ
+  if(!req.body.id) {
+      res.status(400).send('Lack of id in the sent request')
+      return
+  }
 
-    addTodo(req.body)
-    .then(() => {
+  addTodo(req.body)
+  .then(() => {
         res.status(200).send('OK!')
       })
   })
@@ -76,7 +76,7 @@ app.delete('/todos/:id', (req, res) => {
 
 app.put('/todos/:id', (req, res) => {
   editTodo(req.params.id, req.body)
-    .then(() => {
+  .then(() => {
       res.status(200).send('OK!');
     })
 
